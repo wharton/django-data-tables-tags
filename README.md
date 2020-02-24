@@ -2,6 +2,9 @@
 
 This repository provides Django template tags for use with jQuery DataTables.
 
+* `data_tables_assets`: loads the JavaScript and CSS assets for jQuery DataTables.
+* `data_table`: takes a Django queryset or list of dictionaries and creates a jQuery DataTable.
+
 ## Installation
 
 ```bash
