@@ -1,0 +1,35 @@
+<table id="wrds-data-table" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            {% for column in columns %}
+                <th>{{ column }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for row in rows %}
+            <tr>
+                {% for key, value in row.items %}
+                    <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+        {% empty %}
+            <tr><td colspan="{{ column_count }}">
+                There is no day pass activity for this time period.
+            </td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+<script>
+$(document).ready(function() {
+    $('#wrds-data-table').DataTable({
+        {% if buttons %}
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+        {% endif %}
+    });
+});
+</script>
