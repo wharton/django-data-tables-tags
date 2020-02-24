@@ -61,6 +61,7 @@ def data_table(queryset, column_names=None, buttons=True):
                 columns.append(capwords(column.replace("_", " ")))
 
     return {
+        "buttons": buttons,
         "columns": columns,
         "column_count": len(columns),
         "rows": queryset,
