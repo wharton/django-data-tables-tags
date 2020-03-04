@@ -11,7 +11,7 @@
         {% for row in rows %}
             <tr>
                 {% for key, value in row.items %}
-                    <td>{{ value }}</td>
+                    <td>{{ value|safe }}</td>
                 {% endfor %}
             </tr>
         {% empty %}
