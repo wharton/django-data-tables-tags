@@ -25,8 +25,16 @@ class MyView(TemplateView):
             "username", "first_name", "last_name", "email", "date_joined",
         ).order_by("-date_joined",)
 
+        my_groups = [
+            {"name": "Baseball Fans", "member_count": 20, "leader": "Russ N."},
+            {"name": "Hockey Fans", "member_count": 47, "leader": "Tim A."},
+            {"name": "Football Fans", "member_count": 42, "leader": "Bob Z."}
+        ]
+
         return context
 ```
+
+** If you are using a queryset, you MUST use the `values()` parameter to explicitly list which fields you wish to include. **
 
 Then, use the template tags to render the data table in your template with the queryset from the context (`my_app/my_template.html`):
 
@@ -38,6 +46,7 @@ Then, use the template tags to render the data table in your template with the q
 </head>
 <body>
     {% data_table users %}
+    {% data_table my_groups %}
 </body>
 </html>
 ```

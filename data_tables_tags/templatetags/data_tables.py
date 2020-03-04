@@ -35,34 +35,35 @@ def data_tables_assets(buttons=True):
             <script src="https://cdn.datatables.net/buttons/{buttons_version}/js/buttons.html5.min.js"></script>
             <script src="https://cdn.datatables.net/buttons/{buttons_version}/js/buttons.print.min.js "></script>
         """.format(
-            buttons_version="1.6.1",
-            jszip_version="3.1.3",
-            pdfmake_version="0.1.53",
+            buttons_version="1.6.1", jszip_version="3.1.3", pdfmake_version="0.1.53",
         )
 
     return mark_safe(dt_assets.strip() + button_assets.strip())
 
 
 @register.inclusion_tag("data_tables_tags/data_table.html")
-def data_table(queryset, column_names=None, buttons=True):
+def data_table(data_struct, column_names=None, buttons=True):
     """
-    Dynamically create a data table from a passed queryset.
+    Dynamically create a data table from a passed data structure.
 
-    Usage: {% data_table my_queryset "Email,IP Address,Issued,Expiration" %}
+    The data structure can be a list of dicts or a Django queryset using `values()`.
+
+    Usage: {% data_table my_data_struct "Email,IP Address,Issued,Expiration" %}
     """
     if column_names:
         columns = [column.strip() for column in column_names.split(",")]
     else:
         columns = []
 
-        # Let's make pretty column headers if the queryset actually has rows
-        if queryset.count():
-            for column in queryset.first().keys():
+    for row in data_struct:
+        if not columns:
+            for column in row.keys():
                 columns.append(capwords(column.replace("_", " ")))
+            break
 
     return {
         "buttons": buttons,
         "columns": columns,
         "column_count": len(columns),
-        "rows": queryset,
+        "rows": data_struct,
     }
