@@ -5,7 +5,7 @@ This repository provides Django template tags for use with jQuery DataTables.
 * `data_tables_assets`: loads the JavaScript and CSS assets for jQuery DataTables.
     * `buttons` (optional boolean, default True): include assets for the buttons plugin, for export functions.
 * `data_table`: takes a Django queryset or list of dictionaries and creates a jQuery DataTable.
-    * `queryset` (required queryset or list of dicts): the data to include in the DataTable.
+    * `data_struct` (required queryset or list of dicts): the data to include in the DataTable.
     * `buttons` (optional boolean, default True): include the buttons bar above the datatable.
     * `column_names` (optional string, default None): a comma delimited list of column header names to use instead of the keys from the first row of the queryset or dict.
 
