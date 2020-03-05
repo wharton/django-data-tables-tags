@@ -16,7 +16,7 @@
             </tr>
         {% empty %}
             <tr><td colspan="{{ column_count }}">
-                There is no day pass activity for this time period.
+                There is no data available.
             </td></tr>
         {% endfor %}
     </tbody>
@@ -28,7 +28,10 @@ $(document).ready(function() {
         dom: 'Bfrtip',
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
+        ],
+        {% endif %}
+        {% if options %}
+        {{ options }}
         {% endif %}
     });
 });

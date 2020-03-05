@@ -42,7 +42,7 @@ def data_tables_assets(buttons=True):
 
 
 @register.inclusion_tag("data_tables_tags/data_table.html")
-def data_table(data_struct, column_names=None, buttons=True):
+def data_table(data_struct, column_names=None, buttons=True, options=None):
     """
     Dynamically create a data table from a passed data structure.
 
@@ -65,5 +65,6 @@ def data_table(data_struct, column_names=None, buttons=True):
         "buttons": buttons,
         "columns": columns,
         "column_count": len(columns),
+        "options": options,
         "rows": data_struct,
     }
