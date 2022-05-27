@@ -32,7 +32,7 @@ class MyView(TemplateView):
             "username", "first_name", "last_name", "email", "date_joined",
         ).order_by("-date_joined",)
 
-        my_groups = [
+        context["my_groups"] = [
             {"name": "Baseball Fans", "member_count": 20, "leader": "Russ N."},
             {"name": "Hockey Fans", "member_count": 47, "leader": "Tim A."},
             {"name": "Football Fans", "member_count": 42, "leader": "Bob Z."}
